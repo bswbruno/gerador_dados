@@ -1,0 +1,59 @@
+{
+  "manifest_version": 3,
+  "name": "Gerador de Dados de Teste",
+  "version": "1.2.3",
+  "description": "Gera CPF, CNS, Nome e texto aleatório por tema (com tamanho exato) para QA e testes automatizados. Conta caracteres/palavras de qualquer seleção e mostra o limite (maxlength) de campos ao focar.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "utils/contagem.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Gerador de Dados de Teste",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "commands": {
+    "gerar-cpf": {
+      "suggested_key": {
+        "default": "Alt+Shift+C"
+      },
+      "description": "Gerar e preencher CPF de teste"
+    },
+    "gerar-cns": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Gerar e preencher CNS de teste"
+    }
+  }
+}

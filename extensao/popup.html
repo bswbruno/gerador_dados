@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Dados de Teste</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9 3H5C3.9 3 3 3.9 3 5V9C3 10.1 3.9 11 5 11H9C10.1 11 11 10.1 11 9V5C11 3.9 10.1 3 9 3Z" fill="currentColor" opacity="0.95"/>
+            <path d="M19 3H15C13.9 3 13 3.9 13 5V9C13 10.1 13.9 11 15 11H19C20.1 11 21 10.1 21 9V5C21 3.9 20.1 3 19 3Z" fill="currentColor" opacity="0.6"/>
+            <path d="M9 13H5C3.9 13 3 13.9 3 15V19C3 20.1 3.9 21 5 21H9C10.1 21 11 20.1 11 19V15C11 13.9 10.1 13 9 13Z" fill="currentColor" opacity="0.6"/>
+            <path d="M19 13H15C13.9 13 13 13.9 13 15V19C13 20.1 13.9 21 15 21H19C20.1 21 21 20.1 21 19V15C21 13.9 20.1 13 19 13Z" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="header-text">
+          <h1 class="title">Dados para Homologação</h1>
+          <span class="badge">Nobru Dev</span>
+        </div>
+      </div>
+      <button class="btn-icon" id="btn-tema" title="Alternar tema" aria-label="Alternar tema">
+        <svg id="icon-lua" width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg id="icon-sol" width="15" height="15" viewBox="0 0 24 24" fill="none" style="display:none">
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Área de resultado -->
+    <section class="result-area" id="result-area">
+      <div class="result-placeholder" id="result-placeholder">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" opacity="0.35">
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M7 8h10M7 12h7M7 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Clique em Gerar para criar um dado</span>
+      </div>
+      <div class="result-content" id="result-content" style="display:none">
+        <span class="result-chip" id="result-tipo">CPF</span>
+        <div class="result-valor" id="result-valor" title="Clique para copiar">—</div>
+        <div class="result-btns">
+          <button class="btn-sm" id="btn-copiar">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Copiar
+          </button>
+          <button class="btn-sm" id="btn-preencher">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Preencher campo
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Botões geradores -->
+    <div class="gen-grid">
+      <button class="btn-gen btn-cpf" id="btn-gerar-cpf">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 10h20" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        Gerar CPF
+      </button>
+      <button class="btn-gen btn-cns" id="btn-gerar-cns">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Gerar CNS
+      </button>
+      <button class="btn-gen btn-nome" id="btn-gerar-nome">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Gerar Nome
+      </button>
+    </div>
+
+    <!-- Gerador de Texto Aleatório -->
+    <div class="contagem-box">
+      <div class="contagem-head">
+        <span class="hist-title">Texto Aleatório</span>
+      </div>
+      <div class="texto-gerador-body">
+        <div class="texto-gerador-row">
+          <label class="texto-gerador-label" for="sel-texto-tema">Tema</label>
+          <select id="sel-texto-tema" class="texto-gerador-select">
+            <option value="lorem">Lorem Ipsum</option>
+            <option value="comentario">Comentário de usuário</option>
+            <option value="produto">Descrição de produto</option>
+            <option value="corporativo">Texto corporativo</option>
+            <option value="juridico">Texto jurídico/formal</option>
+          </select>
+        </div>
+        <div class="texto-gerador-row">
+          <label class="texto-gerador-label" for="input-texto-tamanho">Caracteres</label>
+          <input type="number" id="input-texto-tamanho" class="texto-gerador-input" min="1" max="20000" value="100" />
+        </div>
+        <button class="btn-gen btn-texto" id="btn-gerar-texto">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+            <path d="M4 7V4h16v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 20h6M12 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Gerar Texto
+        </button>
+      </div>
+    </div>
+
+    <!-- Config: formato CPF -->
+    <div class="config-row">
+      <label class="toggle-wrap">
+        <input type="checkbox" id="chk-formato" checked />
+        <span class="track"><span class="thumb"></span></span>
+        <span class="toggle-label-text">CPF formatado <code>000.000.000-00</code></span>
+      </label>
+    </div>
+
+    <!-- Config: Nome -->
+    <div class="config-row config-nome-box">
+      <span class="config-nome-title">Opções do Nome</span>
+      <label class="toggle-wrap">
+        <input type="checkbox" id="chk-nome-prefixo" checked />
+        <span class="track"><span class="thumb"></span></span>
+        <span class="toggle-label-text">Primeiro nome sempre <code>TESTE</code></span>
+      </label>
+      <div class="config-nome-sep"></div>
+      <label class="toggle-wrap">
+        <input type="checkbox" id="chk-nome-maiusculo" checked />
+        <span class="track"><span class="thumb"></span></span>
+        <span class="toggle-label-text">Nome em <code>MAIÚSCULAS</code></span>
+      </label>
+    </div>
+
+    <!-- Config: Contador de Caracteres -->
+    <div class="config-row config-nome-box">
+      <span class="config-nome-title">Contador de Caracteres</span>
+      <label class="toggle-wrap">
+        <input type="checkbox" id="chk-contagem-auto" checked />
+        <span class="track"><span class="thumb"></span></span>
+        <span class="toggle-label-text">Balão automático ao selecionar texto na página</span>
+      </label>
+
+      <label class="toggle-wrap">
+        <input type="checkbox" id="chk-limite-campo" checked />
+        <span class="track"><span class="thumb"></span></span>
+        <span class="toggle-label-text">Mostrar limite <code>maxlength</code> ao focar um campo</span>
+      </label>
+
+      <div class="config-nome-sep"></div>
+
+      <span class="config-nome-title" style="margin-top:2px">O que contar</span>
+      <div class="metricas-grid">
+        <label class="chk-metrica"><input type="checkbox" id="chk-m-comEspaco" checked /> Com espaços</label>
+        <label class="chk-metrica"><input type="checkbox" id="chk-m-espacos" checked /> Espaços</label>
+        <label class="chk-metrica"><input type="checkbox" id="chk-m-semEspaco" checked /> Sem espaços</label>
+        <label class="chk-metrica"><input type="checkbox" id="chk-m-palavras" checked /> Palavras</label>
+        <label class="chk-metrica"><input type="checkbox" id="chk-m-linhas" checked /> Linhas</label>
+      </div>
+    </div>
+
+    <!-- Contar texto manualmente / via seleção da página -->
+    <div class="contagem-box">
+      <div class="contagem-head">
+        <span class="hist-title">Contar texto</span>
+        <button class="btn-clear" id="btn-usar-selecao">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
+            <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Usar seleção da página
+        </button>
+      </div>
+      <textarea id="contagem-input" class="contagem-textarea" rows="3" placeholder="Cole um texto aqui ou clique em &quot;Usar seleção da página&quot;..."></textarea>
+      <div class="contagem-resultado" id="contagem-resultado">
+        <span class="contagem-vazio">Nenhum texto para contar ainda</span>
+      </div>
+    </div>
+
+    <!-- Atalhos -->
+    <div class="atalhos">
+      <span><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> → CPF</span>
+      <span><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> → CNS</span>
+    </div>
+
+    <!-- Histórico -->
+    <div class="hist-box">
+      <div class="hist-head">
+        <span class="hist-title">Histórico</span>
+        <button class="btn-clear" id="btn-limpar">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
+            <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Limpar
+        </button>
+      </div>
+      <ul class="hist-list" id="hist-list">
+        <li class="hist-empty" id="hist-empty">Nenhum dado gerado ainda</li>
+      </ul>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <a
+        href="mailto:SEU_EMAIL_AQUI@exemplo.com?subject=Sugest%C3%A3o%20-%20Gerador%20de%20Dados%20de%20Teste"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rodape-link"
+        id="link-sugestao"
+        title="Enviar sugestão"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0012 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <a
+        href="https://chrome.google.com/webstore/detail/SEU_ID_DA_EXTENSAO_AQUI"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rodape-link"
+        id="link-avaliar"
+        title="Avaliar a extensão"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8l-6.2 3.2L7 14.2l-5-4.9 6.9-1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <button
+        type="button"
+        class="rodape-link rodape-link-doar"
+        id="btn-doar"
+        title="Apoiar via Pix"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </footer>
+
+    <!-- Modal de doação via Pix -->
+    <div class="pix-overlay" id="pix-overlay" hidden>
+      <div class="pix-modal">
+        <button type="button" class="pix-fechar" id="pix-fechar" aria-label="Fechar">×</button>
+
+        <h3 class="pix-titulo">Apoie o projeto via Pix</h3>
+        <p class="pix-subtitulo">Escaneie o QR Code ou copie a chave abaixo</p>
+
+        <div class="pix-qrcode-wrap">
+          <img src="icons/qrcode-pix.png" alt="QR Code Pix" class="pix-qrcode-img" id="pix-qrcode-img" />
+          <div class="pix-qrcode-placeholder" id="pix-qrcode-placeholder">
+            Adicione o arquivo<br /><code>icons/qrcode-pix.png</code>
+          </div>
+        </div>
+
+        <div class="pix-chave-row">
+          <code class="pix-chave-texto" id="pix-chave-texto">SUA_CHAVE_PIX_AQUI</code>
+          <button type="button" class="btn-copiar-pix" id="btn-copiar-pix">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="utils/contagem.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
