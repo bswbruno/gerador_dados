@@ -45,6 +45,7 @@
   let painelSuprimido = false;
   let ultimoTextoPainel = null;
   let timeoutAutoOcultar = null;
+  let painelModoSelecao = false; // true = mostrando contagem de seleção | false = mostrando limite de campo
 
   // Agenda o fechamento automático do painel em 10s (reinicia a cada exibição/atualização)
   function agendarAutoOcultar() {
@@ -183,6 +184,7 @@
     const contagem = GDT_CONTAGEM.contar(texto);
     const painel = montarPainel();
     pararEscutaInputCampo(); // este conteúdo é de seleção, não de campo — evita conflito
+    painelModoSelecao = true;
     obterConteudoPainel().innerHTML = renderLinhasPainel(contagem);
     painel.style.display = "block";
     posicionarPainel(painel, rect);
@@ -220,7 +222,7 @@
     }
     const dados = obterSelecaoAtual();
     if (!dados) {
-      ocultarPainel();
+      if (painelModoSelecao) ocultarPainel(); // só esconde se era contagem de seleção
       return;
     }
     exibirContagemFlutuante(dados.texto, dados.rect);
@@ -296,6 +298,7 @@
     if (!configCache.mostrarLimiteCampo) return;
 
     const painel = montarPainel();
+    painelModoSelecao = false;
     obterConteudoPainel().innerHTML = renderInfoCampo(el);
     painelSuprimido = false;
     painel.style.display = "block";

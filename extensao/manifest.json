@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Gerador de Dados de Teste",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "Gera CPF, CNS, Nome e texto aleatório por tema (com tamanho exato) para QA e testes automatizados. Conta caracteres/palavras de qualquer seleção e mostra o limite (maxlength) de campos ao focar.",
   "permissions": [
     "activeTab",

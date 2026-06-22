@@ -424,19 +424,24 @@ button:focus-visible, input:focus-visible {
 
 .rodape {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
+  gap: 4px;
   padding: 9px 0 1px;
   margin-top: 2px;
   border-top: 1px solid var(--border);
 }
+.rodape-icones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
 .rodape-texto {
-  margin: 4px 0 0;
-  text-align: center;
-  font-size: 11px;
-  line-height: 1.4;
+  margin: 0;
+  font-size: 10px;
   color: var(--muted);
+  text-align: center;
 }
 .rodape-link {
   position: relative;

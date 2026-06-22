@@ -6,7 +6,7 @@
   "use strict";
 
   // TODO: troque pela sua chave PIX real (CPF, e-mail, telefone ou chave aleatória)
-  const PIX_KEY = "6abc8f01-362f-4959-9046-189a0394ab83";
+  const PIX_KEY = "SUA_CHAVE_PIX_AQUI";
 
   let valorAtual = null;
   let tipoAtual = null;
